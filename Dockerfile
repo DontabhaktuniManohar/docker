@@ -1,4 +1,3 @@
-FROM centos:centos7
-RUN yum -y install git && \
-    yum -y erase vim-minimal
-ENV foo /bar
+FROM manohardontabhaktuni/firstdocker:3.0
+ENV jenkins_image AWSFREETIER
+RUN echo "$jenkins_image"
