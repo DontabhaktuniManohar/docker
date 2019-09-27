@@ -13,7 +13,7 @@ pipeline {
 				  stage('Build & Test') {
 				  	steps {
             			script {
-				  sh 'echo "Build from build version $imagename $foo"'
+				  sh 'echo "Build from build version $imagename $foo";ls -l /tmp'
 				  }
 				  }
 				  }
