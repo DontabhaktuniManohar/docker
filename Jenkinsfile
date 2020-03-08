@@ -8,7 +8,7 @@ pipeline {
     choice(name: 'LEVEL', choices: 'L1\nL2\nL3\nL1-L2-L3' , description: '')
   }
   
-		  agent {
+	agent {
   dockerfile {
     filename 'Dockerfile'
     registryCredentialsId '3696ce68-38c4-4539-86c0-a537f86a55b8'
