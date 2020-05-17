@@ -193,26 +193,30 @@ Example HTML code for tabs.js
 
 		function ActivateTab(containerId, activeTabIndex)
 		{
-			var i, tabContainer, tabContents;
-			tabContainer  == null
+			var i, tabContainer, tabContents; 
 			tabContainer = document.getElementById(containerId);
 			var urls = ['https://www.youtube.com/embed/qsWcHwv9rA8','https://www.youtube.com/embed/Q6QR4979KIQ','https://www.youtube.com/embed/E_JY-Z3_nX0'];
 			tabContents = getChildElementsByClassName(tabContainer, 'tab-content');
 			if(tabContents.length > 0)
-			{
-				console.log(tabContents )
+			{	
+				
+				
 				for(i = 0; i < tabContents.length; i++)
 				{
 					//tabContents[i].className = "tab-content";
 					tabContents[i].style.display = "none";
+					tabContents[i].querySelectorAll('iframe').forEach(
+  				        function(elem){
+    					   elem.parentNode.removeChild(elem);
+				        });
+
+
 				}
 				var iframe = document.createElement('iframe');
    				//iframe.style.display = "none";
     				iframe.src = urls[activeTabIndex];
     				tabContents[activeTabIndex].appendChild(iframe);
-				console.log(tabContents[activeTabIndex])
 				tabContents[activeTabIndex].style.display = "block";
-					
 
 		    		tabList = document.getElementById(containerId + '-list');
 				tabs = getChildElementsByClassName(tabContainer, 'tab-item');
@@ -221,7 +225,7 @@ Example HTML code for tabs.js
 					for(i = 0; i < tabs.length; i++)
 					{
 						tabs[i].className = "tab-item";
-					}
+					} 
 
 					tabs[activeTabIndex].className = "tab-item tab-active";
 					tabs[activeTabIndex].blur();
