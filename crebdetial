@@ -1,3 +1,13 @@
+
+
+withCredentials([usernamePassword(credentialsId: 'my-creds', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
+    writeFile file: 'script.sh', text: '''#!/bin/bash
+        export USERNAME=$USER
+        export PASSWORD=$PASS
+        ./my-script.sh
+    '''
+    sh 'chmod +x script.sh && ./script.sh'
+}
 pipeline {
     agent any
 
