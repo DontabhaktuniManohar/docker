@@ -21,3 +21,29 @@ pipeline {
         }
     }
 }
+
+
+
+import com.cloudbees.plugins.credentials.*
+import com.cloudbees.plugins.credentials.domains.*
+import com.cloudbees.plugins.credentials.common.*
+import jenkins.model.*
+
+node {
+
+    def creds = CredentialsProvider.lookupCredentials(
+        StandardUsernamePasswordCredentials.class,
+        Jenkins.instance,
+        null,
+        null
+    )
+
+    def c = creds.find { it.id == 'my-credential-id' }
+
+    if (c) {
+        println "USERNAME = ${c.username}"
+        println "PASSWORD = ${c.password.getPlainText()}"
+    } else {
+        println "Credential not found"
+    }
+}
