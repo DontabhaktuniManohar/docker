@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Print Credentials') {
+            steps {
+                withCredentials([
+                    usernamePassword(
+                        credentialsId: 'my-credential-id',
+                        usernameVariable: 'USERNAME',
+                        passwordVariable: 'PASSWORD'
+                    )
+                ]) {
+
+                    script {
+                        echo "Username: ${USERNAME}"
+                        echo "Password: ${PASSWORD}"
+                    }
+                }
+            }
+        }
+    }
+}
